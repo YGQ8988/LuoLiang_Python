@@ -39,7 +39,7 @@ def urls2(urls,e):  #创建获取高清壁纸函数
             r = 'http://www.zhuoku.'+z    #拼接成完整链接
             print('正在获取专辑汇总链接：',r)
             pic = requests.get(url=r,headers=headers)
-            pics = re.findall('http://bizhi.zhuoku.com.*?\.jpg',pic.text) #用RE匹配高清图片下载地址
+            pics = re.findall('http.*/\d{4}/\d{2}/\d{2}.*\.jpg',pic.text) #用RE匹配高清图片下载地址
             for photo in pics:
                 if photo not in photos:
                     photos.append(photo)  #去重处理
