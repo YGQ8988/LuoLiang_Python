@@ -27,6 +27,6 @@ def thlj(mv_urls):
             xl_lj = xlurl('a')[0]['href']
             xl_name = xlurl('a')[0]['thunderrestitle']
             print('{0:^1}\t{1:^30}\t{2:^60}'.format(num,xl_name,xl_lj))
-page_o = int(input('请输入需要爬取的开始页：'))
-page_t = int(input('请输入需要爬取的结束页：'))
-thlj(html(url_1(page_o,page_t)))
+#page_o = int(input('请输入需要爬取的开始页：'))
+#page_t = int(input('请输入需要爬取的结束页：'))
+thlj(html(url_1(1,2)))
