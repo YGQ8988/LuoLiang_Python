@@ -82,7 +82,7 @@ def get_photos(title,urllist):
         path = 'D:/今日头条/'
         if not os.path.exists(path):
             os.mkdir(path)
-        path1 = 'D:/今日头条/'+title+'/'
+        path1 = path+title+'/'
         if not os.path.exists(path1):
             os.mkdir(path1)
         for url in urllist:
@@ -117,6 +117,7 @@ def main():
         except:
             print('JSON页面解析未找到有图片的链接')
     print('-----此次运行已完成-----')
+    print('-----此次运行保存的相关文件均保存在D盘今日头条目录下，还请知悉-----')
 
 if __name__ == '__main__':
     main()
