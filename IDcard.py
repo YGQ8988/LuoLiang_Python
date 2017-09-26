@@ -1,73 +1,53 @@
-import random
-import time
+import requests
+from time import sleep
+import re
+import xlwt
 
+headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'}
 
-def regiun():
-	'''生成身份证前六位'''
-	#列表里面的都是一些地区的前六位号码
-	first_list = ['362402','362421','362422','362423','362424','362425','362426','362427','362428','362429','362430','362432','110100','110101','110102','110103','110104','110105','110106','110107','110108','110109','110111']
-	first = random.choice(first_list)
-	return first
+def gethtml(url):
+    '''通过POST提交重新换一批请求'''
+    data = {'id':'reload...'}
+    try:
+        html = requests.post(url,data=data)
+        html.encoding = 'utf-8'
+        return html.text
 
-def year():
-	'''生成年份'''
-	now = time.strftime('%Y')
-	#1948为第一代身份证执行年份,now-18直接过滤掉小于18岁出生的年份
-	second = random.randint(1948,int(now)-18)
-	age = int(now) - second
-	print('随机生成的身份证人员年龄为：'+str(age))
-	return second
+    except BaseException as f:
+        print('出错了，错误信息为',f)
 
+def getid(html):
+    '''正则匹配页面源码内需要的数据'''
+    try:
+        pat = re.compile('<td>(.{2,3}) (\d{18})</td>', re.S)
+        infos = re.findall(pat, html)
+        return infos
 
-def month():
-	'''生成月份'''
-	three = random.randint(1,12)
-	#月份小于10以下，前面加上0填充
-	if three < 10:
-		three = '0' + str(three)
-		return three
-	else:
-		return three
-
-
-def day():
-	'''生成日期'''
-	four = random.randint(1,31)
-	#日期小于10以下，前面加上0填充
-	if four < 10:
-		four = '0' + str(four)
-		return four
-	else:
-		return four
-
-
-def randoms():
-	'''生成身份证后四位'''
-	#后面序号低于相应位数，前面加上0填充
-	five = random.randint(1,9999)
-	if five < 10:
-		five = '000' + str(five)
-		return five
-	elif 10 < five < 100:
-		five = '00' + str(five)
-		return five
-	elif 100 < five < 1000:
-		five = '0' + str(five)
-		return five
-	else:
-		return five
-
-
-def main():
-	first = regiun()
-	second = year()
-	three = month()
-	four = day()
-	last = randoms()
-	IDcard = str(first)+str(second)+str(three)+str(four)+str(last)
-	print('随机生成的身份证号码为：'+IDcard)
+    except BaseException as f:
+        print('出错了，错误信息为',f)
 
 
 if __name__ == '__main__':
-	main()
+
+    url = 'http://shenfenzheng.293.net'
+    print('======================================================================================')
+    print('=====说明：本程序获取的数据将保存在D盘根目录下,如需获取一组新数据请关闭此程序,再运行即可=====')
+    print('======================================================================================')
+    print('----------正在获取数据，请耐心等待----------')
+    html = gethtml(url)
+    infolist = getid(html)
+    print('----------正在保存数据，请耐心等待----------')
+    wb = xlwt.Workbook()
+    ws = wb.add_sheet('idcard')
+    ws.write(0, 0, '姓名')
+    ws.write(0, 1, '身份证号码')
+    num = 1
+    for a in infolist:
+        ws.write(num,0,a[0])
+        ws.write(num,1,a[1])
+        num+=1
+    wb.save('D://IDcard.xls')
+    print('----------保存成功，Excel文件请见D盘根目录下----------')
+    print('----------本程序将在5秒后自动关闭----------')
+    sleep(5)
 
