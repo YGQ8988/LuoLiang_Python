@@ -13,7 +13,7 @@ headers = {
 
 def gethtml(url):
 	'''获取URL HTML文本'''
-	proex = {'https':"https://104.225.151.169:26205"}
+	proex = {'https':"https://59.37.132.30:8080"}
 	try:
 		html = requests.get(url,headers=headers,timeout=15,proxies=proex)
 		html.encoding = html.apparent_encoding
