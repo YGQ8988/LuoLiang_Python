@@ -1,0 +1,54 @@
+{% extends 'base_2.html' %}
+
+{% block main %}
+<div class="content-body">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-12">
+            {% for post in post_list %}
+                <article class="post post-1">
+                    <header class="entry-header">
+                        <h1 class="entry-title">
+                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </h1>
+                        <div class="entry-meta">
+                            <span class="post-category"><a href="{% url 'blog:category' post.category.pk %}">{{ post.category }}</a></span>
+
+                            <span class="post-date"><a><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">{{ post.created_time }}</time></a></span>
+
+                            <span class="post-author"><a href="{% url 'blog:about' %}">{{ post.author }}</a></span>
+
+                            <span class="comments-link"><a href="{{ post.get_absolute_url }}#comment-area">{{ post.comment_set.count }} 评论</a></span>
+
+                            <span class="views-count"><a href="{{ post.get_absolute_url }}">{{ post.views }} 阅读</a></span>
+                        </div>
+                    </header>
+                    <div class="entry-content clearfix">
+                        <p>{{ post.excerpt }}</p>
+                        <div class="read-more cl-effect-14">
+                            <a href="{{ post.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+                        </div>
+                    </div>
+                </article>
+            {% empty %}
+                暂无文章！
+            {% endfor %}
+        {% if is_paginated %}
+        <div class="pagination-simple">
+            <!-- 如果当前页还有上一页，显示一个上一页的按钮 -->
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">上一页</a>
+        {% endif %}
+        <!-- 显示当前页面信息 -->
+        <span class="current">第 {{ page_obj.number }} 页 / 共 {{ paginator.num_pages }} 页</span>
+        <!-- 如果当前页还有下一页，显示一个下一页的按钮 -->
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+        {% endif %}
+        </div>
+        {% endif %}
+            </main>
+        </div>
+    </div>
+</div>
+{% endblock %}

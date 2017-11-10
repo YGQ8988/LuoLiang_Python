@@ -1,0 +1,31 @@
+{% extends "base_2.html" %}
+
+{% load staticfiles %}
+{% block main %}
+<div class="content-body">
+<div class="container">
+    <div class="row">
+        <main class="col-md-12">
+            <h1 class="page-title">关于我</h1>
+            <article class="post">
+                <div class="entry-content clearfix">
+                    <figure class="img-responsive-center">
+                        <img class="img-responsive" src="{% static 'blog/img/me.jpg' %}" alt="Developer Image">
+                    </figure>
+                    <p>喜欢探讨，各种技术，但自己却是个菜鸟。目前在学习Python Django相关知识。希望能成为一名及格的程序员。✌️</p>
+                    <p>虽然我一直一厢情愿的认为自己是名程序员，但是理想不能放弃！！！</p>
+                    <div class="height-40px"></div>
+                    <h2 class="title text-center">社交</h2>
+                    <ul class="social">
+                        <li class="facebook"><a href="http://www.jianshu.com/nb/11058152"><span class="ion-social-facebook"></span></a></li>
+                        <li class="twitter"><a href="http://www.jianshu.com/nb/11058152"><span class="ion-social-twitter"></span></a></li>
+                        <li class="google-plus"><a href="http://www.jianshu.com/nb/11058152"><span class="ion-social-googleplus"></span></a></li>
+                        <li class="tumblr"><a href="https://github.com/YGQ8988"><span class="ion-social-tumblr"></span></a></li>
+                    </ul>
+                </div>
+            </article>
+        </main>
+    </div>
+</div>
+</div>
+{% endblock main %}
