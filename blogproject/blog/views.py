@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Post,Tag,Category
+from .models import Post,Tag,Category,Message
 import markdown
 from comments.forms import CommentForm
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
@@ -9,6 +9,8 @@ from django.views.generic import ListView,DetailView
 from django.db.models import Q
 from markdown.extensions.toc import TocExtension
 from django.utils.text import slugify
+from django.core.mail import send_mail
+from time import strftime
 
 
 class IndexView(ListView):
@@ -54,7 +56,24 @@ def about(request):
 
 def contact(request):
     '''联系我的页面'''
-    return render(request,'blog/contact.html')
+    if request.method == "GET":
+        return render(request, 'blog/contact.html')
+    elif request.method == "POST":
+        now = strftime('%Y-%m-%d %H:%M:%S')
+        mail_name = '留言人昵称：'
+        mail_content = '留言内容：'
+        mail_email = '留言人邮箱地址：'
+        texts = {}
+        texts['name'] = request.POST['name']
+        texts['user_email'] = request.POST['email']
+        texts['user_theme'] = request.POST['subject']
+        texts['user_text'] = request.POST['message']
+        Message.objects.create(name=texts['name'],user_email=texts['user_email'],user_theme=texts['user_theme'],user_text=texts['user_text'],message_time=now)
+        mail_text = mail_name + texts['name'] + '\n\n' + mail_email + texts['user_email'] + '\n\n' + mail_content + texts['user_text']
+
+        send_mail(texts['user_theme'], mail_text, '3301885103@qq.com',
+                      ['898829225@qq.com'], fail_silently=True)
+        return render(request, 'blog/contact.html')
 
 class Articles(IndexView):
     '''博客页面'''

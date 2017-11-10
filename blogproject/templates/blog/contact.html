@@ -8,13 +8,10 @@
                 <h1 class="page-title">联系方式</h1>
                 <article class="post">
                     <div class="entry-content clearfix">
-                        <form action="#" method="post" class="contact-form">
+                        <form action="{% url 'blog:contact' %}" method="post" class="contact-form">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <h1>此功能暂未实现，仅供预览！</h1>
-                                    <h1>QQ : 898829225</h1>
-                                    <h1>QQ群 : 368639036</h1>
                                     <input type="text" name="name" placeholder="名字" required>
                                     <input type="email" name="email" placeholder="邮箱地址" required>
                                     <input type="text" name="subject" placeholder="主题" required>

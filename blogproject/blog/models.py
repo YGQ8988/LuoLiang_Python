@@ -40,3 +40,14 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-created_time']
+
+class Message(models.Model):
+    '''留言表'''
+    name = models.CharField(max_length=20)
+    user_email = models.EmailField()
+    user_theme = models.CharField(max_length=100)
+    user_text = models.TextField()
+    message_time = models.DateTimeField()
+
+    def __str__(self):
+        return self.user_email

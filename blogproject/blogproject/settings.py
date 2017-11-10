@@ -26,7 +26,7 @@ SECRET_KEY = '!f9qm+&lzu$qc8o*_k=+ezpycxdcsmaj*d&s^2siwr875(g+8d'
 DEBUG = False
 
 ALLOWED_HOSTS = ['.luoliang.ga','http://luoliang.ga/','13.59.63.231']
-
+# ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -97,8 +97,8 @@ DATABASES = {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'db',
 #         'USER': 'root',
-#         'PASSWORD': 'LuoLiang0812',
-#         'HOST': 'rm-uf6p3j36pu61xkn5yo.mysql.rds.aliyuncs.com',
+#         'PASSWORD': 'luoliang',
+#         'HOST': '127.0.0.1',
 #         'PORT': '3306',
 #     }
 # }
@@ -120,7 +120,14 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.qq.com'                  #SMTP地址
+EMAIL_PORT = 25                             #SMTP端口
+EMAIL_HOST_USER = '3301885103@qq.com'       #我自己的邮箱
+EMAIL_HOST_PASSWORD = 'cmeglybzbyhddbib'    #我的邮箱密码
+EMAIL_USE_TLS = True                            #与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
+#管理员站点
+SERVER_EMAIL = 'ygq8988@foxmail.com'            #The email address that error messages come from, such as those sent to ADMINS and MANAGERS.
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
