@@ -12,10 +12,18 @@
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <input type="text" name="name" placeholder="名字" required>
+                                    <p>昵称</p>
+                                    {{ form.name }}
+                                    <p>邮箱地址</p>
+                                    {{ form.user_email }}
+                                    <p>主题</p>
+                                    {{ form.user_theme }}
+                                    <p>您想说的</p>
+                                    {{ form.user_text }}
+                                    <!-- <input type="text" name="name" placeholder="名字" required>
                                     <input type="email" name="email" placeholder="邮箱地址" required>
                                     <input type="text" name="subject" placeholder="主题" required>
-                                    <textarea name="message" rows="7" placeholder="您想说的" required></textarea>
+                                    <textarea name="message" rows="7" placeholder="您想说的" required></textarea> -->
                                     <button class="btn-send btn-5 btn-5b ion-ios-paperplane"><span>发送给我</span></button>
                                 </div>
                             </div>	<!-- row -->

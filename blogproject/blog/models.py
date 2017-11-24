@@ -47,7 +47,7 @@ class Message(models.Model):
     user_email = models.EmailField()
     user_theme = models.CharField(max_length=100)
     user_text = models.TextField()
-    message_time = models.DateTimeField()
+    create_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.user_email
