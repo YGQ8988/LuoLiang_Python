@@ -2,7 +2,20 @@ import requests
 import json
 
 
-headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'}
+headers = {
+			'Accept':'*/*',
+			'Accept-Encoding':'gzip, deflate, br',
+			'Accept-Language':'zh-CN,zh;q=0.9',
+			'Connection':'keep-alive',
+			# 'Content-Length':'153',
+			'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
+			'Cookie':'BAIDUID=36A32AA55A73F0257F5C0EE2BF99FA49:FG=1; BIDUPSID=36A32AA55A73F0257F5C0EE2BF99FA49; PSTM=1514444021; PSINO=5; H_PS_PSSID=1420_21094_25178_20930; locale=zh; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1514944269; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1514944269; to_lang_often=%5B%7B%22value%22%3A%22en%22%2C%22text%22%3A%22%u82F1%u8BED%22%7D%2C%7B%22value%22%3A%22zh%22%2C%22text%22%3A%22%u4E2D%u6587%22%7D%5D; from_lang_often=%5B%7B%22value%22%3A%22zh%22%2C%22text%22%3A%22%u4E2D%u6587%22%7D%2C%7B%22value%22%3A%22en%22%2C%22text%22%3A%22%u82F1%u8BED%22%7D%5D',
+			'Host':'fanyi.baidu.com',
+			'Origin':'https://fanyi.baidu.com',
+			'Referer':'https://fanyi.baidu.com/',
+			'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36',
+			'X-Requested-With':'XMLHttpRequest'
+}
 
 
 def translate(Choice,word):
@@ -13,7 +26,9 @@ def translate(Choice,word):
 				'from':date[0],
 				'to':date[1],
 				'query':word,
-				'simple_means_flag':'3'
+				'simple_means_flag':'3',
+				'sign':'238168.475497',
+				'token':'083321317d5b0199679f0629956413ec'
 				}
 		return data
 	else:
@@ -21,7 +36,9 @@ def translate(Choice,word):
 				'from':date[1],
 				'to':date[0],
 				'query':word,
-				'simple_means_flag':'3'
+				'simple_means_flag':'3',
+				'sign':'238168.475497',
+				'token':'083321317d5b0199679f0629956413ec'
 				}
 		return data
 
@@ -29,7 +46,7 @@ def translate(Choice,word):
 def getjs(data):
 	'''通过POST传递参数，并返回页面源码'''
 	try:
-		url = 'http://fanyi.baidu.com/v2transapi'
+		url = 'https://fanyi.baidu.com/v2transapi'
 		html = requests.post(url=url,data=data,headers=headers)
 		html.raise_for_status()
 		html.encoding = 'utf-8'
@@ -65,7 +82,8 @@ def main():
 			keyword=input('\n请输入您需要翻译的内容,回车查看结果:')
 			data = translate(Choice,keyword)
 			html = getjs(data)
-			jstext(html)
+			print(html)
+			# jstext(html)
 		elif Choice == 'q':
 			break
 		else:

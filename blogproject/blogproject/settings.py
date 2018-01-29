@@ -25,7 +25,7 @@ SECRET_KEY = '!f9qm+&lzu$qc8o*_k=+ezpycxdcsmaj*d&s^2siwr875(g+8d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.luoliang.ga','http://luoliang.ga/','13.59.63.231']
+ALLOWED_HOSTS = ['.luoliang.ga','http://luoliang.ga/','http://104.225.151.169']
 # ALLOWED_HOSTS = []
 
 # Application definition
@@ -86,8 +86,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blog_db',
         'USER': 'root',
-        'PASSWORD': '#20as3SElksds0ew98',
-        'HOST': '13.59.63.231',
+        'PASSWORD': 'root',
+        'HOST': '104.225.151.169',
         'PORT': '3306',
     }
 }

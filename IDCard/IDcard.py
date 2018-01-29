@@ -9,7 +9,7 @@ def gethtml(url):
     '''通过POST提交重新换一批请求'''
     data = {'id':'reload...'}
     try:
-        html = requests.post(url,data=data)
+        html = requests.post(url,data=data,headers=headers)
         html.encoding = 'utf-8'
         return html.text
 
