@@ -32,8 +32,8 @@ def getweather(url,lat,lon,appcode):
             wsqk = "晚间天气情况：{}".format(a.get('conditionNight'))
             zdwd = "当天最低温度：{}度".format(a.get('tempNight'))
             zgwd = "当天最高温度：{}度".format(a.get('tempDay'))
-            btfx = "日间风向：{},级数：{}级".format(a.get("windDirDay"),a.get('windLevelDay'))
-            wsfx = "晚间风向：{},级数：{}级".format(a.get("windDirNight"), a.get('windLevelNight'))
+            btfx = "日间风向：{}，级数：{}级".format(a.get("windDirDay"),a.get('windLevelDay'))
+            wsfx = "晚间风向：{}，级数：{}级".format(a.get("windDirNight"), a.get('windLevelNight'))
             weathers.append(ygrq)
             weathers.append(btqk)
             weathers.append(wsqk)
@@ -56,13 +56,22 @@ def sendmail(weathers,receiver):
     sender_qq_mail = '3301885103@qq.com'
     # 收件人邮箱
     receiver = receiver
-    hh = '\n'
+    hh = '，'
     try:
         # 邮件的正文内容
-        mail_content = ''
-        for a in weathers[0]:
-            b = a + hh +hh
-            mail_content +=b
+        today = ''
+        tomorrow = ''
+        dftomorrow = ''
+        for a in weathers[0][0:7]:
+        	b = a + hh
+        	today +=b
+        for a in weathers[0][7:14]:
+        	b = a + hh
+        	tomorrow +=b
+        for a in weathers[0][14:21]:
+        	b = a + hh
+        	dftomorrow +=b
+        mail_content = today + '\n\n' + tomorrow + '\n\n' + dftomorrow
         # 邮件标题
         mail_title = weathers[1] + "近三日天气情况"
         # ssl登录
@@ -100,5 +109,5 @@ if __name__ == "__main__":
     lat = '''31.251547'''       #纬度
     lon = '''121.233772'''      #经度
     weather = getweather(url,lat,lon,appcode)
-    receiver = 'qq205059147@163.com'       #邮件人邮箱地址
+    receiver = '898829225@qq.com'       #邮件人邮箱地址
     sendmail(weather,receiver)
