@@ -1,0 +1,4 @@
+Django==1.10.6
+gunicorn==19.7.1
+PyMySQL==0.8.0
+virtualenv==15.1.0
