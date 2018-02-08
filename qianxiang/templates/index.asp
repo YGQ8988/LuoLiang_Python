@@ -221,13 +221,13 @@ var MyMar=setInterval(Marquee,speed)
     <td><img src="{% static 'qx/images/67_15.jpg' %}" width="274" height="15" alt=""></td>
   </tr>
   <tr>
-    <td><img src="{% static 'qx/images/67_17.jpg' %}.jpg" width="274" height="14" alt=""></td>
+    <td><img src="{% static 'qx/images/67_17.jpg' %}" width="274" height="14" alt=""></td>
   </tr>
   <tr>
     <td background="{% static 'qx/images/67_19.jpg' %}" height="37" style="padding-left:20px; padding-top:2px;"><span style="font-size:14px; font-weight:bold; color:#FFFFFF">联系我们</span></td>
   </tr>
   <tr>
-    <td background="{% static 'qx/images/67_21.jpg' %}.jpg" height="149" class="black12a"><table width="100%" height="32" border="0" cellpadding="0" cellspacing="0">
+    <td background="{% static 'qx/images/67_21.jpg' %}" height="149" class="black12a"><table width="100%" height="32" border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td width="87%" style="padding-left:10px; line-height:35px;"><span style="font-weight: bold">上海芊详建筑工程有限公司 </span><br />
                   地址：上海上海闵行区纪鹤路876号 <br />
