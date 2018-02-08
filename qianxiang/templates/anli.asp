@@ -198,7 +198,7 @@ setInterval('refreshCalendarClock()',1000);
     </table></td>
   </tr>
   <tr>
-    <td><img src="i{% static 'qx/images/67_25.jpg' %}" width="274" height="16" alt=""></td>
+    <td><img src="{% static 'qx/images/67_25.jpg' %}" width="274" height="16" alt=""></td>
   </tr>
 </table>
 </td>
