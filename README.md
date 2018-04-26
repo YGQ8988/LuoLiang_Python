@@ -8,7 +8,7 @@ QQ群地址：[Python自学技术交流](http://shang.qq.com/wpa/qunwpa?idkey=2e
 ### BaiDu Dict 文件夹存放通过百度翻译接口编写的翻译小工具，以及打包完成的EXE可执行文件
 
 ### blogproject 存放洛凉博客所有代码
-博客地址: [洛凉博客](http://luoliang.ga/)  
+博客地址: [洛凉博客](http://www.zxpython.top/)
 
 ### IDCard 存放自动获取某网站测试身份证代码，以及打包完成的EXE可执行文件
 
